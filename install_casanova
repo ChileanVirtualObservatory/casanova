@@ -1,14 +1,32 @@
 #! /bin/sh
 
-########################################################################
-# Edit these paths to your own situation                               #
-########################################################################
+if [ $# -eq 0 ]
+then
+  echo "Fail, usage:"
+  echo " $ install_casanova /ABASOLUTE/PATH/TO/CASANOVA/ /ABSOLUTE/PATH/TO/INSTALL/DIR"
+  exit 1
+elif [ $# -eq 1 ]
+then
+  echo "Fail, usage:"
+  echo " $ install_casanova /ABASOLUTE/PATH/TO/CASANOVA/ /ABSOLUTE/PATH/TO/INSTALL/DIR"
+  exit 1
+elif [ $# -eq 2 ]
+then
+  # Where this file is located:
+  infodir=$1
 
-# Where this file is located:
-infodir=~/Documents/MA-project-2/casanova
+  # Where you install casa
+  casainstalldir=$2
+else
+  echo "Fail, usage:"
+  echo " $ install_casanova /ABASOLUTE/PATH/TO/CASANOVA/ /ABSOLUTE/PATH/TO/INSTALL/DIR"
+  exit 1
+fi
 
-# Where you install casa
-casainstalldir=/net/dedemsvaart/data2/kvdam/casa_installation2
+echo $infodir
+echo $casainstalldir
+
+exit 0
 
 # Create python_packages directory, don't change this line
 mkdir -m 777 $casainstalldir/python_packages
