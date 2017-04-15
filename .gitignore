@@ -1,3 +1,4 @@
 *.sw?
 *\~
 easy_install_casanova.sh
+*.tar.gz

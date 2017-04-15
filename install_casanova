@@ -23,11 +23,6 @@ else
   exit 1
 fi
 
-echo $infodir
-echo $casainstalldir
-
-exit 0
-
 # Create python_packages directory, don't change this line
 mkdir -m 777 $casainstalldir/python_packages
 
