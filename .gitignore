@@ -5,3 +5,4 @@ easy_install_casanova.sh
 *.pyc
 *.pyo
 casapy/
+sandbox/
