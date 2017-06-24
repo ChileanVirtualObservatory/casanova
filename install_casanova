@@ -27,7 +27,7 @@ fi
 mkdir -m 777 $casainstalldir/python_packages
 
 # Note that your release may differ, so possibly edit the path
-casa=$casainstalldir/casa-release-4.5.2-el6
+casa=$casainstalldir/casa-release-4.7.2-el7
 python=$casainstalldir/python_packages
 
 ########################################################################

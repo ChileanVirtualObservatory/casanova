@@ -7,7 +7,8 @@
 easy_install_casanova.sh
 casapy/
 sandbox/
-
+build*/
+env*/
 python-env
 casapy
 sandbox
