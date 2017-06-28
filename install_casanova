@@ -27,7 +27,7 @@ fi
 mkdir -m 777 $casainstalldir/python_packages
 
 # Note that your release may differ, so possibly edit the path
-casa=$casainstalldir/casa-release-4.5.2-el6
+casa=$casainstalldir/casa-release-4.7.2-el7
 python=$casainstalldir/python_packages
 
 ########################################################################
@@ -83,6 +83,7 @@ for f in lib*.so* ; do
         cp -a $f $python/__casac__ ;;
       *)
         cp -a $f $python/__casac__
+        echo patchelf --set-rpath '$ORIGIN' $python/__casac__/$f
         patchelf --set-rpath '$ORIGIN' $python/__casac__/$f ;;
     esac
   fi
@@ -91,6 +92,7 @@ done
 # patch rpaths of Python module binary files
 cd $python/__casac__
 for f in _*.so ; do
+  echo patchelf --set-rpath "$ORIGIN" $f
   patchelf --set-rpath '$ORIGIN' $f
 done
 

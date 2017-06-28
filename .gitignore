@@ -1,7 +1,15 @@
+# Files usually created by some text editors
 *.sw?
 *\~
-easy_install_casanova.sh
 *.tar.gz
 *.pyc
 *.pyo
-casapy/
+easy_install_casanova.sh
+
+# Ignores everythin related to virtual environment or build directory (if you want to install casanova in this same directory)
+build*/
+env*/
+python-env
+casapy
+sandbox
+

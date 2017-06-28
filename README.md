@@ -51,7 +51,7 @@ These instructions are for tcsh.
 
 1. Download (and unzip) the files in this repository to some directory.
 
-2. Move casa (I used casa-release-4.5.2-el6) to a directory named casapy (or so). Other directories such as python_packages will also end up in this directory.
+2. Move casa (I used casa-release-4.5.2-el6) to a directory named casapy (or so). Other directories such as python_packages will also end up in this directory. Create also a subdirectory called "python_packages"
 
 3. Download and install [patchelf](http://nixos.org/patchelf.html).
 

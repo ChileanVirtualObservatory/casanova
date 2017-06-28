@@ -1,16 +1,14 @@
 #!/bin/sh
 
-set oldpythonpath = "${PYTHONPATH}"
+export oldpythonpath="${PYTHONPATH}"
+user=${whoami}
+# Replace /path/to/casa
+caspyter=/path/to/casa
+export PYTHONPATH="${caspyter}/python_packages:${PYTHONPATH}"
 
-# The python_packages folder was automatically created with the install_casanova script.
-# Change this path:
-setenv PYTHONPATH "/net/dedemsvaart/data2/kvdam/casa_installation/python_packages:${PYTHONPATH}"
+export CASAPATH="${caspyter}/casa-release-4.7.2-el6 linux socorro ${user}"
 
-# Change only the first and last element of this path (linux socorro is OK)
-# The first element is the directory where the casa code is stored, so /own/path/casa-release-something
-# The last element is the computer name (in my case this was dedemsvaart) I'm not sure if this is even used but change it anyway
-setenv CASAPATH "/net/dedemsvaart/data2/kvdam/casa_installation/casa-release-4.5.2-el6  linux socorro dedemsvaart"
 
-python $argv # Or use ipython
+ipython notebook --port 8081 --ip 0.0.0.0
 
-setenv PYTHONPATH "${oldpythonpath}"
+export PYTHONPATH="${oldpythonpath}"
