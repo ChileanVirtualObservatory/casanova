@@ -1,8 +1,8 @@
 ## Install Caspyter locally
 
-This has been taken from GasparCorrea contribution
- 
 ## 1. Make sure you have the following dependencies
+
+Install them using your package manager.
  
 * libice6
 * libsm6
@@ -19,14 +19,25 @@ This has been taken from GasparCorrea contribution
  
 ```
 wget https://almascience.eso.org/arcdistribution/casa-distro/linux/release/casa-release-4.5.2-el6.tar.gz
-tar zxf /home/caspyter/casa-release-4.5.2-el6.tar.gz
+tar zxf casa-release-4.5.2-el6.tar.gz
+```
+
+Or, symlink your downloaded casa release to this directory
+
+```
+ln -s PATH/TO/casa-release-4.5.2-el6.tar.gz .
 ```
  
 ## 3. Install patchELF
+
+You can install it by downloading the 0.6 version from git, using Kasper's script:
  
 ```
 sudo sh /path/to/caspyter/scripts/patchELF.sh
 ```
+
+Or you can install it using your package manager
+
 
 ## 4. Install virtualenv
 
@@ -76,7 +87,35 @@ pip install matplotlib
 
 Now we're ready to install Casanova.
 
-## 4. Install Casanova
+## 5. Prepare build directory
+
+Create a directory where you will install casanova
+
+```
+mkdir build
+```
+
+Go to the build directory, and symlink your casa release to it, then return to
+the project folder. If you have installed casa on the folder /opt/usr, you can
+do the following:
+
+```
+cd build
+ln -s /opt/usr/casa-release-4.5.2-el6 .
+cd ..
+```
+
+
+## 6. Install Casanova
+
+Run the script *install_casanova* with two parameters. The first one must be the
+absolute path to your casanova repository (where this file is located), and the 
+second one the absolute path to the target installation directory.
+
+```
+./install_casanova `pwd` `pwd`/build
+```
+
 * Edit `infodir` and `casainstalldir` parameters in `caspyter/install_casanova` file, and then run `caspyter/install_casanova`
 * Edit `caspyter` parameter in `caspyter/casanova_startup` and then add this to your `.bashrc`:
 
@@ -91,4 +130,5 @@ strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep CXXABI_1.3.8
 If it returns `CXXABI_1.3.8`, try with:
 ```
 cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /home/user/anaconda2/bin/../lib/libstdc++.so.6
+```
 
