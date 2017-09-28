@@ -24,10 +24,6 @@ tar zxf casa-release-4.5.2-el6.tar.gz
 
 Or, symlink your downloaded casa release to this directory
 
-```
-ln -s PATH/TO/casa-release-4.5.2-el6.tar.gz .
-```
- 
 ## 3. Install patchELF
 
 You can install it by downloading the 0.6 version from git, using Kasper's script:

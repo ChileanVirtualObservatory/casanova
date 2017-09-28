@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 if [ $# -eq 0 ]
 then
@@ -53,16 +53,25 @@ cp $infodir/code/__init__.py $python/casat
 ln -s $casa/data/geodetic/Observatories $casa/data/Observatories
 ln -s $casa/data $casainstalldir
 
-# Copy the startup script to the casa install directory
-# cp $infodir/casanova_startup $casainstalldir
-# Creates the startup script
-echo 'export oldpythonpath="${PYTHONPATH}"' > c.test
-echo 'user=${whoami}' >> c.test
-echo "export PYTHONPATH=\"${casainstalldir}/python_packages:\${PYTHONPATH}\"" >> c.test
-echo "export CASAPATH=\"${casainstalldir}/casa-release-4.5.2-el6 linux socorro ${user}\"" >> c.test
-echo 'ipython notebook --port 8081 --ip 0.0.0.0' >> c.test
-echo 'export PYTHONPATH="${oldpythonpath}"' >> c.test
+# Creates the jupyter startup script
+echo '#!/bin/bash' > ${casainstalldir}/jupyter_casanova.sh
+echo 'export oldpythonpath="${PYTHONPATH}"' >> ${casainstalldir}/jupyter_casanova.sh
+echo 'user=${whoami}' >> ${casainstalldir}/jupyter_casanova.sh
+echo "export PYTHONPATH=\"${casainstalldir}/python_packages:\${PYTHONPATH}\"" >> ${casainstalldir}/jupyter_casanova.sh
+echo "export CASAPATH=\"${casainstalldir}/casa-release-4.5.2-el6 linux socorro ${user}\"" >> ${casainstalldir}/jupyter_casanova.sh
+echo 'ipython notebook --port 8081 --ip 0.0.0.0' >> ${casainstalldir}/jupyter_casanova.sh
+echo 'export PYTHONPATH="${oldpythonpath}"' >> ${casainstalldir}/jupyter_casanova.sh
+chomod +x ${casainstalldir}/jupyter_casanova.sh
 
+# Creates the ipython startup script
+echo '#!/bin/bash' > ${casainstalldir}/ipython_casanova.sh
+echo 'export oldpythonpath="${PYTHONPATH}"' >> ${casainstalldir}/ipython_casanova.sh
+echo 'user=${whoami}' >> ${casainstalldir}/ipython_casanova.sh
+echo "export PYTHONPATH=\"${casainstalldir}/python_packages:\${PYTHONPATH}\"" >> ${casainstalldir}/ipython_casanova.sh
+echo "export CASAPATH=\"${casainstalldir}/casa-release-4.5.2-el6 linux socorro ${user}\"" >> ${casainstalldir}/ipython_casanova.sh
+echo 'ipython' >> ${casainstalldir}/ipython_casanova.sh
+echo 'export PYTHONPATH="${oldpythonpath}"' >> ${casainstalldir}/ipython_casanova.sh
+chmod +x ${casainstalldir}/ipython_casanova.sh
 
 # Add the new ftw() task
 cp $infodir/code/task_ftw.* $python
