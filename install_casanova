@@ -54,7 +54,15 @@ ln -s $casa/data/geodetic/Observatories $casa/data/Observatories
 ln -s $casa/data $casainstalldir
 
 # Copy the startup script to the casa install directory
-cp $infodir/casanova_startup $casainstalldir
+# cp $infodir/casanova_startup $casainstalldir
+# Creates the startup script
+echo 'export oldpythonpath="${PYTHONPATH}"' > c.test
+echo 'user=${whoami}' >> c.test
+echo "export PYTHONPATH=\"${casainstalldir}/python_packages:\${PYTHONPATH}\"" >> c.test
+echo "export CASAPATH=\"${casainstalldir}/casa-release-4.5.2-el6 linux socorro ${user}\"" >> c.test
+echo 'ipython notebook --port 8081 --ip 0.0.0.0' >> c.test
+echo 'export PYTHONPATH="${oldpythonpath}"' >> c.test
+
 
 # Add the new ftw() task
 cp $infodir/code/task_ftw.* $python
